@@ -22,6 +22,7 @@ await connectDB()
 
 
 const app = express();
+app.use(express.json());
 
 app.use(cors({
     origin: ['http://localhost:5173', 'http://localhost:3000','https://thumblify-rosy.vercel.app'],
@@ -47,7 +48,6 @@ app.use(session({
     })
 }))
 
-app.use(express.json())
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
