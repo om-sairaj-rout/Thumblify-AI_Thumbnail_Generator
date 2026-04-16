@@ -83,8 +83,12 @@ export const generateThumbnail = async (req: Request, res: Response) => {
 
     // Upload to Cloudinary
     const uploadResult = await cloudinary.uploader.upload(
-      `data:image/jpeg;base64,${imageBuffer.toString("base64")}`
-    );
+  `data:image/jpeg;base64,${imageBuffer.toString("base64")}`,
+  {
+    folder: "thumblify/generated_thumbnails",
+    overwrite: true, // replace old image
+  }
+);
 
     thumbnail.image_url = uploadResult.secure_url;
     thumbnail.isGenerating = false;
